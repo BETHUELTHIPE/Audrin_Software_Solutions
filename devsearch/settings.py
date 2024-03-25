@@ -124,8 +124,8 @@ TEMPLATES = [
 ]
 
 # WSGI application
-WSGI_APPLICATION = 'devsearch.wsgi.application'
-
+#WSGI_APPLICATION = 'devsearch.wsgi.application'
+WSGI_APPLICATION ='gunicorn devsearch.wsgi:application'
 # Database configuration
 #DATABASES = {
     #'default': {

@@ -209,5 +209,5 @@ if not DEBUG:
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Conditional debug setting for production
-if os.getcwd() == '/app':
-    DEBUG = False
+#if os.getcwd() == '/app':
+    #DEBUG = False

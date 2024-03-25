@@ -1,5 +1,5 @@
 databases:
-  - name: mysitedb
+  - name: AfricaDataEngineersDB
     plan: free
     databaseName: AfricaDataEngineersDB
     user: africadataengineersdb_user

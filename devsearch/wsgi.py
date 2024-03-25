@@ -11,9 +11,8 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-# Set the DJANGO_SETTINGS_MODULE environment variable to point to your settings file.
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'devsearch.settings')
 
-# Get the Django application instance.
 application = get_wsgi_application()
+
 

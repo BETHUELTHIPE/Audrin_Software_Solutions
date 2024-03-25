@@ -179,10 +179,10 @@ CORS_ALLOW_ALL_ORIGINS = True
 EMAIL_BACKEND = env("EMAIL_BACKEND", default="django.core.mail.backends.smtp.EmailBackend")
 EMAIL_PORT = env("EMAIL_PORT", default=587)
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = env("USER_EMAIL", default="moukangwebethuel@gmail.com")
+EMAIL_HOST_USER = env("USER_EMAIL", default="bethuelthipe@gmail.com")
 EMAIL_HOST_PASSWORD = env("USER_PASSWORD")
 
-DEFAULT_FROM_EMAIL = 'Audrin Software Solutions <django.moukangwebethuel@gmail.com>'
+DEFAULT_FROM_EMAIL = 'Audrin Software Solutions <django.bethuelthipe@gmail.com>'
 
 # Static files configuration
 STATIC_URL = '/static/'
@@ -209,5 +209,5 @@ if not DEBUG:
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Conditional debug setting for production
-#if os.getcwd() == '/app':
-    #DEBUG = False
+if os.getcwd() == '/app':
+    DEBUG = False

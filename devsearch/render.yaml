@@ -1,0 +1,22 @@
+databases:
+  - name: mysitedb
+    plan: free
+    databaseName: AfricaDataEngineersDB
+    user: africadataengineersdb_user
+
+services:
+  - type: web
+    plan: free
+    name: devsearch
+    runtime: python
+    buildCommand: "./build.sh"
+    startCommand: "python -m gunicorn devsearch.asgi:application -k uvicorn.workers.UvicornWorker"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: AfricaDataEngineersDB
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4

@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 from django.core.management.utils import get_random_secret_key
 from environ import Env
+import dj_database_url
 
 # Instantiate Env class
 env = Env()
@@ -25,10 +26,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure--4iws!uc#2j2cwb2llj!)k&lw3=+zy^2cxqrdj2h=nai8eiq*8'
 
+SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#DEBUG = True
+DEBUG = 'RENDER' not in os.environ
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
@@ -125,17 +127,28 @@ TEMPLATES = [
 WSGI_APPLICATION = 'devsearch.wsgi.application'
 
 # Database configuration
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'AfricaDataEngineersDB',
-        'USER': 'postgres',
-        'PASSWORD': '23498812',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
+#DATABASES = {
+    #'default': {
+        #'ENGINE': 'django.db.backends.postgresql',
+        #'NAME': 'AfricaDataEngineersDB',
+        #'USER': 'postgres',
+        #'PASSWORD': '23498812',
+        #'HOST': 'localhost',
+        #'PORT': '5432',
+    #}
+#}
 
+#DATABASES = {
+    #'default': dj_database_url.config(
+        # Replace this value with your local database's connection string.
+        #default='postgres://africadataengineersdb_user:FU3pL9OrOjKtoKfMuaxJTamfqaKSrA3C@dpg-co0a0mq1hbls73brbl60-a.oregon-postgres.render.com/africadataengineersdb',
+        #conn_max_age=600
+    #)
+#}
+
+database_url=os.environ.get("DATABASE_URL")
+DATABASES["default"]=dj_database_url.parse("database_url")
+#postgres://africadataengineersdb_user:FU3pL9OrOjKtoKfMuaxJTamfqaKSrA3C@dpg-co0a0mq1hbls73brbl60-a.oregon-postgres.render.com/africadataengineersdb
 # Password validation settings
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -181,6 +194,16 @@ STATICFILES_DIRS = [
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
+# This production code might break development mode, so we check whether we're in DEBUG mode
+if not DEBUG:
+    # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
+    # and renames the files with unique names for each version to support long-term caching
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

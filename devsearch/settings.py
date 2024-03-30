@@ -26,8 +26,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = 'django-insecure--4iws!uc#2j2cwb2llj!)k&lw3=+zy^2cxqrdj2h=nai8eiq*8'
+#SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = True
 DEBUG = 'RENDER' not in os.environ
@@ -140,14 +140,14 @@ WSGI_APPLICATION ='gunicorn devsearch.wsgi:application'
 
 #DATABASES = {
     #'default': dj_database_url.config(
-        # Replace this value with your local database's connection string.
+         #Replace this value with your local database's connection string.
         #default='postgres://africadataengineersdb_user:FU3pL9OrOjKtoKfMuaxJTamfqaKSrA3C@dpg-co0a0mq1hbls73brbl60-a.oregon-postgres.render.com/africadataengineersdb',
         #conn_max_age=600
     #)
 #}
 
 database_url=os.environ.get("DATABASE_URL")
-DATABASES["default"]=dj_database_url.parse("database_url")
+#DATABASES["default"]=dj_database_url.parse("database_url")
 #postgres://africadataengineersdb_user:FU3pL9OrOjKtoKfMuaxJTamfqaKSrA3C@dpg-co0a0mq1hbls73brbl60-a.oregon-postgres.render.com/africadataengineersdb
 # Password validation settings
 AUTH_PASSWORD_VALIDATORS = [

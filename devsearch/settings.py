@@ -15,7 +15,7 @@ import os
 from django.core.management.utils import get_random_secret_key
 from environ import Env
 import dj_database_url
-
+import django_heroku
 # Instantiate Env class
 env = Env()
 
@@ -32,7 +32,7 @@ SECRET_KEY = 'django-insecure--4iws!uc#2j2cwb2llj!)k&lw3=+zy^2cxqrdj2h=nai8eiq*8
 #DEBUG = True
 DEBUG = 'RENDER' not in os.environ
 
-ALLOWED_HOSTS = ['https://audrindevelopers.onrender.com']
+ALLOWED_HOSTS = ['audrindevelopers.onrender.com']
 
 # Application definition
 INSTALLED_APPS = [
@@ -146,10 +146,23 @@ WSGI_APPLICATION ='gunicorn devsearch.wsgi:application'
     #)
 #}
 
-database_url=os.environ.get("DATABASE_URL")
+#database_url=os.environ.get("DATABASE_URL")
 #DATABASES["default"]=dj_database_url.parse("database_url")
 #postgres://africadataengineersdb_user:FU3pL9OrOjKtoKfMuaxJTamfqaKSrA3C@dpg-co0a0mq1hbls73brbl60-a.oregon-postgres.render.com/africadataengineersdb
 # Password validation settings
+
+DATABASES = { 
+    'default': { 
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', 
+        'NAME': 'd63decut8tm7bc', 
+        'USER': 'u8hbc8kfih6rrb', 
+        'PASSWORD': 'p841efccffd93a3b00fafc9f51e23b97c8447cdc26c41772b455004305988ab1d', 
+        'HOST': 'c7gljno857ucsl.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com', 
+        'PORT': '5432', 
+    } 
+} 
+
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',

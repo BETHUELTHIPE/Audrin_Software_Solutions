@@ -15,7 +15,7 @@ import os
 from django.core.management.utils import get_random_secret_key
 from environ import Env
 import dj_database_url
-import django_heroku
+#import django_heroku
 # Instantiate Env class
 env = Env()
 

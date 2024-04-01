@@ -181,15 +181,13 @@ USE_TZ = True
 CORS_ALLOW_ALL_ORIGINS = True
 
  #Get user email and password from environment variables or use default values
-USER_EMAIL = config("USER_EMAIL", default="moukangwebethuel@gmail.com")
-USER_PASSWORD = config("USER_PASSWORD", default="@Beth23498812")
-
-# Set email host user and password
-EMAIL_HOST_USER = USER_EMAIL
-EMAIL_HOST_PASSWORD = USER_PASSWORD
-EMAIL_PORT = 587 
-# Enable TLS (Transport Layer Security) for secure connection
+# Email configuration settings:
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'moukangwebethuel@mail.com'  # Enter your GMAIL address
+EMAIL_HOST_PASSWORD = '@Beth23498812'  # Ent
 
 # Set default sender email address
 DEFAULT_FROM_EMAIL = 'moukangwebethuel@gmail.com'

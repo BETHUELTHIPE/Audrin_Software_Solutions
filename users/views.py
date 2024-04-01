@@ -46,6 +46,11 @@ def logoutUser(request):
 
 from django.http import HttpResponseRedirect
 
+from django.http import HttpResponseRedirect
+import logging
+
+logger = logging.getLogger(__name__)
+
 def registerUser(request):
     page = 'register'
     form = CustomUserCreationForm()
@@ -53,17 +58,23 @@ def registerUser(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save(commit=False)
-            user.username = user.username.lower()
-            user.save()
+            try:
+                user = form.save(commit=False)
+                user.username = user.username.lower()
+                user.save()
 
-            messages.success(request, 'User account was created!')
+                messages.success(request, 'User account was created!')
 
-            login(request, user)
-            return redirect('edit-account')
+                login(request, user)
+                return redirect('edit-account')
+            except Exception as e:
+                logger.error(f"Error occurred while creating user: {e}")
+                messages.error(request, 'An error occurred during registration. Please try again later.')
+                return render(request, 'users/login_register.html', {'page': page, 'form': form})
         else:
             # Form is invalid, return the form with errors
-            messages.error(request, 'An error has occurred during registration')
+            logger.error(f"Invalid form data: {form.errors}")
+            messages.error(request, 'Please correct the errors below.')
             return render(request, 'users/login_register.html', {'page': page, 'form': form})
 
     # If request method is not POST, render the registration form

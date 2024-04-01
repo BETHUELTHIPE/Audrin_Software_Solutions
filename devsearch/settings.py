@@ -180,6 +180,7 @@ USE_TZ = True
 
 CORS_ALLOW_ALL_ORIGINS = True
 
+ #Get user email and password from environment variables or use default values
 USER_EMAIL = config("USER_EMAIL", default="moukangwebethuel@gmail.com")
 USER_PASSWORD = config("USER_PASSWORD", default="@Beth23498812")
 
@@ -192,7 +193,6 @@ EMAIL_USE_TLS = True
 
 # Set default sender email address
 DEFAULT_FROM_EMAIL = 'moukangwebethuel@gmail.com'
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/

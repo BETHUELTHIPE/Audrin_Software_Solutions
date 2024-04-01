@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure--4iws!uc#2j2cwb2llj!)k&lw3=+zy^2cxqrdj2h=nai8eiq*8
 DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1',
-https://git.heroku.com/audrinsoftwaresolutions.git]
+'audrinsoftwaresolutions-83f1ddc37e09.herokuapp.com']
 
 
 # Application definition

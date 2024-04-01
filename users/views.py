@@ -44,6 +44,8 @@ def logoutUser(request):
     return redirect('login')
 
 
+from django.http import HttpResponseRedirect
+
 def registerUser(request):
     page = 'register'
     form = CustomUserCreationForm()
@@ -59,14 +61,14 @@ def registerUser(request):
 
             login(request, user)
             return redirect('edit-account')
-
         else:
-            messages.success(
-                request, 'An error has occurred during registration')
+            # Form is invalid, return the form with errors
+            messages.error(request, 'An error has occurred during registration')
+            return render(request, 'users/login_register.html', {'page': page, 'form': form})
 
+    # If request method is not POST, render the registration form
     context = {'page': page, 'form': form}
     return render(request, 'users/login_register.html', context)
-
 
 def profiles(request):
     profiles, search_query = searchProfiles(request)

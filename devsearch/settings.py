@@ -182,15 +182,15 @@ CORS_ALLOW_ALL_ORIGINS = True
 
  #Get user email and password from environment variables or use default values
 # Email configuration settings:
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'moukangwebethuel@mail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'moukangwebethuel@mail.com'  # Enter your GMAIL address
-EMAIL_HOST_PASSWORD = '@Beth23498812'  # Ent
+EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_PORT=587
+EMAIL_USE_TLS=True
+EMAIL_HOST_USER='moukangwebethuel@mail.com'  # Enter your GMAIL address
+EMAIL_HOST_PASSWORD='@Beth23498812'  # Ent
 
 # Set default sender email address
-DEFAULT_FROM_EMAIL = 'moukangwebethuel@gmail.com'
+DEFAULT_FROM_EMAIL='moukangwebethuel@gmail.com'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
